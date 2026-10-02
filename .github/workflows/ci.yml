@@ -34,7 +34,7 @@ jobs:
             build_type: Debug
             options: -DISKRA64_SANITIZERS=ON
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Verify source checksums
         run: sha256sum --check FILES.sha256
       - name: Verify reference vectors
