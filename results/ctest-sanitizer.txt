@@ -1,0 +1,10 @@
+Internal ctest changing into directory: /mnt/data/iskra64/build-san
+Test project /mnt/data/iskra64/build-san
+    Start 1: correctness
+1/2 Test #1: correctness ......................   Passed    1.41 sec
+    Start 2: quality_smoke
+2/2 Test #2: quality_smoke ....................   Passed    2.29 sec
+
+100% tests passed, 0 tests failed out of 2
+
+Total Test time (real) =   3.71 sec

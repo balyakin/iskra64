@@ -1,0 +1,2 @@
+compiler=14.2.0; xxhash=0.8.3; auto=avx512; seed=42; target_ms=15; repetitions=9
+sink=11564294465933753938

@@ -1,0 +1,81 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    name: ${{ matrix.name }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: GCC
+            compiler: g++
+            build_type: Release
+            options: -DISKRA64_BENCH_NATIVE=OFF -DCMAKE_INSTALL_INCLUDEDIR=include/iskra64-custom
+          - name: Clang
+            compiler: clang++
+            build_type: Release
+            options: -DISKRA64_BENCH_NATIVE=OFF
+          - name: Portable
+            compiler: g++
+            build_type: Release
+            options: -DISKRA64_DISABLE_SIMD=ON
+          - name: Sanitizers
+            compiler: g++
+            build_type: Debug
+            options: -DISKRA64_SANITIZERS=ON
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify source checksums
+        run: sha256sum --check FILES.sha256
+      - name: Verify reference vectors
+        run: |
+          python3 tools/reference_vectors.py
+          git diff --exit-code -- tests/vectors.hpp tests/vectors.json
+      - name: Verify benchmark summary
+        if: matrix.name == 'GCC'
+        run: |
+          python3 tools/summarize.py \
+            results/bench-gcc-seed42.csv \
+            results/bench-clang-seed42.csv \
+            results/bench-gcc-seed0.csv \
+            --output "$RUNNER_TEMP/summary.csv" > /dev/null
+          cmp results/summary.csv "$RUNNER_TEMP/summary.csv"
+          if python3 tools/summarize.py /dev/null 2> "$RUNNER_TEMP/empty.err"; then exit 1; fi
+          grep -q 'no benchmark rows found' "$RUNNER_TEMP/empty.err"
+      - name: Configure
+        env:
+          CXX: ${{ matrix.compiler }}
+        run: >-
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+          ${{ matrix.options }}
+      - name: Build
+        run: cmake --build build --parallel
+      - name: Test
+        run: cd build && ctest --output-on-failure
+      - name: Check installed package
+        if: matrix.name == 'GCC'
+        run: |
+          cmake --install build --prefix "$RUNNER_TEMP/iskra64-install"
+          cmake -S tests/package -B build/package \
+            -DCMAKE_PREFIX_PATH="$RUNNER_TEMP/iskra64-install"
+          cmake --build build/package --parallel
+          ./build/package/iskra64_consumer
+      - name: Check embedded build
+        if: matrix.name == 'GCC'
+        run: |
+          cmake -S tests/embedded -B "$RUNNER_TEMP/embedded-build"
+          cmake --build "$RUNNER_TEMP/embedded-build" --parallel
+          cmake --install "$RUNNER_TEMP/embedded-build" --prefix "$RUNNER_TEMP/embedded-install"
+          if [ -d "$RUNNER_TEMP/embedded-install" ]; then
+            test -z "$(find "$RUNNER_TEMP/embedded-install" -type f -print -quit)"
+          fi

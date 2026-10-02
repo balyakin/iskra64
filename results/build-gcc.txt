@@ -1,0 +1,8 @@
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /mnt/data/iskra64/build
+[ 20%] Built target iskra64
+[ 80%] Built target iskra64_bench
+[ 80%] Built target iskra64_quality
+[ 80%] Built target iskra64_test
+[100%] Built target iskra64_example

@@ -1,0 +1,1 @@
+PASS correctness; comparisons=51030006; selected=avx512

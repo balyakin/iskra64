@@ -1,0 +1,8 @@
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /mnt/data/iskra64/build-clang
+[ 20%] Built target iskra64
+[ 60%] Built target iskra64_quality
+[ 60%] Built target iskra64_test
+[ 80%] Built target iskra64_bench
+[100%] Built target iskra64_example

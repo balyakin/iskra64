@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.16)
+project(iskra64_package_test LANGUAGES CXX)
+find_package(iskra64 CONFIG REQUIRED)
+add_executable(iskra64_consumer ../../examples/basic.cpp)
+target_link_libraries(iskra64_consumer PRIVATE iskra64::iskra64)

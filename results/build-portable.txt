@@ -1,0 +1,9 @@
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /mnt/data/iskra64/build-portable
+[ 25%] Built target iskra64
+[ 87%] Built target iskra64_example
+[ 87%] Built target iskra64_quality
+[ 87%] Building CXX object CMakeFiles/iskra64_test.dir/tests/test.cpp.o
+[100%] Linking CXX executable iskra64_test
+[100%] Built target iskra64_test

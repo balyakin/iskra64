@@ -1,0 +1,9 @@
+{
+  "xxhash.h": {
+    "upstream": "https://github.com/Cyan4973/xxHash",
+    "version": "0.8.3",
+    "source": "/usr/include/xxhash.h from Debian libxxhash-dev 0.8.3-2",
+    "modified": false,
+    "sha256": "17973c0dc49d9854ca26caa191f0e12f7a424b68858d9a78de3860d959d85e4b"
+  }
+}

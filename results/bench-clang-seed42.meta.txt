@@ -1,0 +1,2 @@
+compiler=Clang 17.0.0 (https://github.com/swiftlang/llvm-project.git 10999b6d034fe318f3d56c83bddb6572593a8bb0); xxhash=0.8.3; auto=avx512; seed=42; target_ms=15; repetitions=9
+sink=11564294465933753938

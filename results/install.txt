@@ -1,0 +1,23 @@
+-- Install configuration: "Release"
+-- Installing: /tmp/iskra64-install/lib/libiskra64.a
+-- Installing: /tmp/iskra64-install/include
+-- Installing: /tmp/iskra64-install/include/iskra64
+-- Installing: /tmp/iskra64-install/include/iskra64/iskra64.hpp
+-- Installing: /tmp/iskra64-install/lib/cmake/iskra64/iskra64Targets.cmake
+-- Installing: /tmp/iskra64-install/lib/cmake/iskra64/iskra64Targets-release.cmake
+-- Installing: /tmp/iskra64-install/lib/cmake/iskra64/iskra64Config.cmake
+-- Installing: /tmp/iskra64-install/lib/cmake/iskra64/iskra64ConfigVersion.cmake
+-- The CXX compiler identification is GNU 14.2.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (0.2s)
+-- Generating done (0.0s)
+-- Build files have been written to: /tmp/iskra64-consumer-build
+[ 50%] Building CXX object CMakeFiles/consumer.dir/main.cpp.o
+[100%] Linking CXX executable consumer
+[100%] Built target consumer
+single: 18150830474300286535
+backend: avx512
